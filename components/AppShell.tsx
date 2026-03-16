@@ -2,14 +2,16 @@
 
 import { useRef } from 'react';
 import { usePathname } from 'next/navigation';
-import { AnimatePresence, motion } from 'framer-motion';
+import { AnimatePresence, motion, type Variants } from 'framer-motion';
 import { DataProvider, useData } from '@/lib/DataContext';
 import { Sidebar } from './Sidebar';
 import { DailyWipe } from './DailyWipe';
 
 const PAGE_ORDER = ['/today', '/backlog', '/plans'];
 
-const pageVariants = {
+const EASE = [0.25, 0.1, 0.25, 1] as [number, number, number, number];
+
+const pageVariants: Variants = {
   initial: (dir: number) => ({
     x: dir * 120,
     opacity: 0,
@@ -18,7 +20,7 @@ const pageVariants = {
     x: 0,
     opacity: 1,
     transition: {
-      x: { duration: 0.12, ease: [0.25, 0.1, 0.25, 1] },
+      x: { duration: 0.12, ease: EASE },
       opacity: { duration: 0.08 },
     },
   },
@@ -26,7 +28,7 @@ const pageVariants = {
     x: dir * -120,
     opacity: 0,
     transition: {
-      x: { duration: 0.08, ease: [0.25, 0.1, 0.25, 1] },
+      x: { duration: 0.08, ease: EASE },
       opacity: { duration: 0.06 },
     },
   }),
