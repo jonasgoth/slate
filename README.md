@@ -1,4 +1,4 @@
-# Slate
+# Doto
 
 A minimal personal productivity app for daily focus. Each day is a clean slate — a short list of things that matter today, a backlog for everything else, and a view of what's coming up.
 

@@ -1,4 +1,4 @@
-# Slate
+# Doto
 
 Personal productivity web app — daily todos, backlog, and upcoming plans. Single user, no auth. Ultra-minimal UI.
 

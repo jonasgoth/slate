@@ -1,21 +1,72 @@
 'use client';
 
+import { useRef } from 'react';
+import { usePathname } from 'next/navigation';
+import { AnimatePresence, motion } from 'framer-motion';
 import { DataProvider, useData } from '@/lib/DataContext';
 import { Sidebar } from './Sidebar';
 import { DailyWipe } from './DailyWipe';
 
+const PAGE_ORDER = ['/today', '/backlog', '/plans'];
+
+const pageVariants = {
+  initial: (dir: number) => ({
+    x: dir * 120,
+    opacity: 0,
+  }),
+  animate: {
+    x: 0,
+    opacity: 1,
+    transition: {
+      x: { duration: 0.12, ease: [0.25, 0.1, 0.25, 1] },
+      opacity: { duration: 0.08 },
+    },
+  },
+  exit: (dir: number) => ({
+    x: dir * -120,
+    opacity: 0,
+    transition: {
+      x: { duration: 0.08, ease: [0.25, 0.1, 0.25, 1] },
+      opacity: { duration: 0.06 },
+    },
+  }),
+};
+
 function AppShellInner({ children }: { children: React.ReactNode }) {
   const { today, todos, backlog, plans } = useData();
+  const pathname = usePathname();
+
+  const prevPathRef = useRef(pathname);
+  const directionRef = useRef(0);
+
+  if (prevPathRef.current !== pathname) {
+    const prevOrder = PAGE_ORDER.indexOf(prevPathRef.current);
+    const currOrder = PAGE_ORDER.indexOf(pathname);
+    if (prevOrder !== -1 && currOrder !== -1) {
+      directionRef.current = currOrder > prevOrder ? 1 : -1;
+    }
+    prevPathRef.current = pathname;
+  }
 
   const todayCount = todos.filter((t) => !t.is_completed).length;
   const backlogCount = backlog.filter((t) => !t.is_completed).length;
   const plansCount = plans.length;
 
   return (
-    <div style={{ backgroundColor: '#F2F1EE' }}>
-      <main style={{ paddingBottom: '108px' }}>
-        {children}
-      </main>
+    <div style={{ backgroundColor: '#F2F1EE', overflowX: 'hidden' }}>
+      <AnimatePresence mode="wait" custom={directionRef.current}>
+        <motion.main
+          key={pathname}
+          custom={directionRef.current}
+          variants={pageVariants}
+          initial="initial"
+          animate="animate"
+          exit="exit"
+          style={{ paddingBottom: '108px' }}
+        >
+          {children}
+        </motion.main>
+      </AnimatePresence>
       <Sidebar todayCount={todayCount} backlogCount={backlogCount} plansCount={plansCount} />
       <DailyWipe today={today} />
     </div>

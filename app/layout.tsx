@@ -3,7 +3,7 @@ import './globals.css';
 import { AppShell } from '@/components/AppShell';
 
 export const metadata: Metadata = {
-  title: 'Slate',
+  title: 'Doto',
   description: 'Personal productivity — daily focus, backlog, and plans.',
 };
 

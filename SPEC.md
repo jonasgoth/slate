@@ -1,4 +1,4 @@
-# Slate — Personal Productivity App
+# Doto — Personal Productivity App
 ## Project Specification
 
 ---
