@@ -1,13 +1,11 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" width="32" height="32">
   <rect width="32" height="32" rx="7" fill="#1A1A1A"/>
-  <text
-    x="16"
-    y="23"
-    font-family="Georgia, 'Times New Roman', serif"
-    font-size="22"
-    font-weight="400"
-    fill="#FFFFFF"
-    text-anchor="middle"
-    dominant-baseline="auto"
-  >S</text>
+  <path
+    d="M9 16.5L14 21.5L23 11.5"
+    fill="none"
+    stroke="#FFFFFF"
+    stroke-width="3"
+    stroke-linecap="round"
+    stroke-linejoin="round"
+  />
 </svg>
