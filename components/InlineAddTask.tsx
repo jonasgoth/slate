@@ -31,7 +31,6 @@ export function InlineAddTask({ onAdd, onCancel }: InlineAddTaskProps) {
     }
     onAdd(title.trim());
     setTitle('');
-    // Keep focus for chaining
     setTimeout(() => inputRef.current?.focus(), 0);
   };
 
@@ -40,9 +39,9 @@ export function InlineAddTask({ onAdd, onCancel }: InlineAddTaskProps) {
       className="flex items-center gap-3"
       style={{
         borderRadius: '8px',
-        border: '1px solid #E9E7E7',
-        background: '#FAFAF9',
-        boxShadow: '0 1px 4px 0 rgba(37, 9, 18, 0.05)',
+        border: '1px solid var(--border-card)',
+        background: 'var(--bg-inline-add)',
+        boxShadow: 'var(--shadow-card)',
         padding: '15px 18px',
       }}
     >
@@ -59,7 +58,7 @@ export function InlineAddTask({ onAdd, onCancel }: InlineAddTaskProps) {
         className="flex-1 outline-none bg-transparent"
         style={{
           fontSize: '15px',
-          color: '#1A1A1A',
+          color: 'var(--text-primary)',
           fontFamily: 'system-ui, -apple-system, sans-serif',
           fontWeight: 400,
         }}

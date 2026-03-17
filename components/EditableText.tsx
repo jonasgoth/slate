@@ -24,7 +24,6 @@ export function EditableText({ value, onSave, completed = false, onEditingChange
       const x = clickXRef.current;
       if (x !== null) {
         const input = inputRef.current;
-        // Use the input's font metrics to approximate the character offset
         const style = window.getComputedStyle(input);
         const canvas = document.createElement('canvas');
         const ctx = canvas.getContext('2d');
@@ -36,7 +35,6 @@ export function EditableText({ value, onSave, completed = false, onEditingChange
           for (let i = 0; i <= input.value.length; i++) {
             const w = ctx.measureText(input.value.slice(0, i)).width;
             if (w >= relX) {
-              // Snap to whichever boundary is closer
               const wPrev = i > 0 ? ctx.measureText(input.value.slice(0, i - 1)).width : 0;
               offset = (relX - wPrev < w - relX) ? i - 1 : i;
               break;
@@ -69,7 +67,7 @@ export function EditableText({ value, onSave, completed = false, onEditingChange
   const textStyle: React.CSSProperties = {
     fontSize: '15px',
     fontWeight: 400,
-    color: '#1A1A1A',
+    color: 'var(--text-primary)',
     textDecoration: completed ? 'line-through' : 'none',
     opacity: completed ? 0.45 : 1,
   };
@@ -106,8 +104,8 @@ export function EditableText({ value, onSave, completed = false, onEditingChange
               position: 'absolute',
               inset: 0,
               width: '100%',
-              color: '#1A1A1A',
-              background: 'rgba(0,0,0,0.04)',
+              color: 'var(--text-primary)',
+              background: 'var(--bg-edit-active)',
               borderRadius: '4px',
             }}
           />

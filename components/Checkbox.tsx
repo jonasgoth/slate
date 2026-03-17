@@ -14,7 +14,7 @@ export function Checkbox({ checked, onChange }: CheckboxProps) {
         width: '22px',
         height: '22px',
         borderRadius: '50%',
-        border: checked ? 'none' : '1.5px solid #E5E5E0',
+        border: checked ? 'none' : '1.5px solid var(--border-input)',
         backgroundColor: checked ? '#22C55E' : 'transparent',
         transitionDuration: '0.2s',
         transitionTimingFunction: 'ease',

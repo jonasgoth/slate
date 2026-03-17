@@ -43,9 +43,9 @@ export function TaskCard({
       className="flex items-center gap-3"
       style={{
         borderRadius: '8px',
-        border: '1px solid #E9E7E7',
-        background: '#FFF',
-        boxShadow: '0 1px 4px 0 rgba(37, 9, 18, 0.05)',
+        border: '1px solid var(--border-card)',
+        background: 'var(--bg-card)',
+        boxShadow: 'var(--shadow-card)',
         padding: '15px 18px',
       }}
       onMouseEnter={() => setHovered(true)}
@@ -62,9 +62,9 @@ export function TaskCard({
         {showMoveToToday && (
           <button
             onClick={() => onMoveToToday?.(id)}
-            className="text-xs transition-colors"
+            className="hover-subtle text-xs transition-colors"
             style={{
-              color: '#B5B5B0',
+              color: 'var(--text-muted)',
               fontSize: '13px',
               fontWeight: 500,
               padding: '3px 8px',
@@ -74,8 +74,6 @@ export function TaskCard({
               visibility: showMoveBtn ? 'visible' : 'hidden',
               cursor: 'pointer',
             }}
-            onMouseEnter={(e) => (e.currentTarget.style.backgroundColor = 'rgba(0,0,0,0.04)')}
-            onMouseLeave={(e) => (e.currentTarget.style.backgroundColor = 'transparent')}
           >
             → Today
           </button>
@@ -83,9 +81,9 @@ export function TaskCard({
         {showMoveToBacklog && (
           <button
             onClick={() => onMoveToBacklog?.(id)}
-            className="text-xs transition-colors"
+            className="hover-subtle text-xs transition-colors"
             style={{
-              color: '#B5B5B0',
+              color: 'var(--text-muted)',
               fontSize: '13px',
               fontWeight: 500,
               padding: '3px 8px',
@@ -95,8 +93,6 @@ export function TaskCard({
               visibility: showMoveBacklogBtn ? 'visible' : 'hidden',
               cursor: 'pointer',
             }}
-            onMouseEnter={(e) => (e.currentTarget.style.backgroundColor = 'rgba(0,0,0,0.04)')}
-            onMouseLeave={(e) => (e.currentTarget.style.backgroundColor = 'transparent')}
           >
             ← Backlog
           </button>

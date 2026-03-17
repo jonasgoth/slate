@@ -6,9 +6,61 @@
   padding: 0;
 }
 
+/* ── Color tokens (light mode defaults) ──────────────────── */
+:root {
+  --bg-app: #F2F1EE;
+  --bg-card: #FFFFFF;
+  --bg-inline-add: #FAFAF9;
+  --bg-nav: #FFFFFF;
+  --bg-nav-pill: #F0EFED;
+  --text-primary: #1A1A1A;
+  --text-muted: #B5B5B0;
+  --text-submuted: #9F989B;
+  --text-dark-muted: #8C8C87;
+  --border-card: #E9E7E7;
+  --border-input: #E5E5E0;
+  --bg-hover-subtle: rgba(0, 0, 0, 0.04);
+  --bg-delete-hover: #F7F5F5;
+  --bg-edit-active: rgba(0, 0, 0, 0.04);
+  --tooltip-bg: #1A1A1A;
+  --tooltip-text: #FFFFFF;
+  --shadow-card: 0 1px 4px 0 rgba(37, 9, 18, 0.05);
+  --shadow-nav:
+    0 0 0 1px rgba(0, 0, 0, 0.04),
+    0 2px 4px rgba(0, 0, 0, 0.04),
+    0 8px 16px rgba(0, 0, 0, 0.08),
+    0 24px 48px rgba(0, 0, 0, 0.10);
+}
+
+/* ── Dark tokens (applied via data-theme="dark" on <html>) ── */
+[data-theme="dark"] {
+  --bg-app: #141311;
+  --bg-card: #1E1C1A;
+  --bg-inline-add: #1A1917;
+  --bg-nav: #252320;
+  --bg-nav-pill: #302E2B;
+  --text-primary: #E8E6E2;
+  --text-muted: #6A6A65;
+  --text-submuted: #6B6764;
+  --text-dark-muted: #5C5C57;
+  --border-card: #2C2B28;
+  --border-input: #2E2D2A;
+  --bg-hover-subtle: rgba(255, 255, 255, 0.06);
+  --bg-delete-hover: #252320;
+  --bg-edit-active: rgba(255, 255, 255, 0.08);
+  --tooltip-bg: #E8E6E2;
+  --tooltip-text: #1A1A1A;
+  --shadow-card: 0 1px 4px 0 rgba(0, 0, 0, 0.3);
+  --shadow-nav:
+    0 0 0 1px rgba(255, 255, 255, 0.04),
+    0 2px 4px rgba(0, 0, 0, 0.2),
+    0 8px 16px rgba(0, 0, 0, 0.3),
+    0 24px 48px rgba(0, 0, 0, 0.5);
+}
+
 body {
-  background-color: #F5F5F2;
-  color: #1a1a1a;
+  background-color: var(--bg-app);
+  color: var(--text-primary);
   font-family:
     system-ui,
     -apple-system,
@@ -19,12 +71,12 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
-/* Remove dark mode — single user app, always light */
+/* Hover utility classes used by interactive elements */
+.hover-subtle:hover { background-color: var(--bg-hover-subtle) !important; }
+.hover-delete:hover { background-color: var(--bg-delete-hover) !important; }
 
 .page-container {
   max-width: 540px;
   margin: 0 auto;
   padding: 60px 48px;
 }
-
-

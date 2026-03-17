@@ -44,15 +44,20 @@ export function AddTaskModal({
       }}
     >
       <div
-        className="bg-white w-full"
-        style={{ maxWidth: '380px', borderRadius: '16px', padding: '28px' }}
+        className="w-full"
+        style={{
+          maxWidth: '380px',
+          borderRadius: '16px',
+          padding: '28px',
+          background: 'var(--bg-card)',
+        }}
       >
         <h2
           style={{
             fontFamily: 'system-ui, -apple-system, sans-serif',
             fontSize: '18px',
             fontWeight: 400,
-            color: '#1A1A1A',
+            color: 'var(--text-primary)',
             marginBottom: '20px',
           }}
         >
@@ -69,11 +74,12 @@ export function AddTaskModal({
           placeholder="Task name"
           className="w-full outline-none"
           style={{
-            border: '1px solid #E5E5E0',
+            border: '1px solid var(--border-input)',
             borderRadius: '8px',
             padding: '10px 12px',
             fontSize: '15px',
-            color: '#1A1A1A',
+            color: 'var(--text-primary)',
+            background: 'var(--bg-card)',
             marginBottom: '16px',
           }}
         />
@@ -89,9 +95,9 @@ export function AddTaskModal({
                 borderRadius: '8px',
                 fontSize: '14px',
                 fontWeight: 400,
-                backgroundColor: destination === dest ? '#1A1A1A' : 'transparent',
-                color: destination === dest ? '#FFFFFF' : '#B5B5B0',
-                border: destination === dest ? 'none' : '1px solid #E5E5E0',
+                backgroundColor: destination === dest ? 'var(--text-primary)' : 'transparent',
+                color: destination === dest ? 'var(--bg-card)' : 'var(--text-muted)',
+                border: destination === dest ? 'none' : '1px solid var(--border-input)',
                 transitionDuration: '0.15s',
               }}
             >
@@ -108,8 +114,8 @@ export function AddTaskModal({
             borderRadius: '8px',
             fontSize: '14px',
             fontWeight: 500,
-            backgroundColor: '#1A1A1A',
-            color: '#FFFFFF',
+            backgroundColor: 'var(--text-primary)',
+            color: 'var(--bg-card)',
           }}
         >
           Add

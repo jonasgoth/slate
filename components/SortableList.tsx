@@ -239,7 +239,7 @@ export function SortableList<T extends { id: string }>({
                 style={{
                   height: drag?.height ?? 48,
                   borderRadius: '10px',
-                  background: 'rgba(0,0,0,0.06)',
+                  background: 'var(--bg-hover-subtle)',
                   flexShrink: 0,
                   transformOrigin: 'top',
                 }}

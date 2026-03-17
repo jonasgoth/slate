@@ -6,6 +6,7 @@ import { AnimatePresence, motion, type Variants } from 'framer-motion';
 import { DataProvider, useData } from '@/lib/DataContext';
 import { Sidebar } from './Sidebar';
 import { DailyWipe } from './DailyWipe';
+import { ThemeToggle } from './ThemeToggle';
 
 const PAGE_ORDER = ['/today', '/backlog', '/plans'];
 
@@ -55,7 +56,7 @@ function AppShellInner({ children }: { children: React.ReactNode }) {
   const plansCount = plans.length;
 
   return (
-    <div style={{ backgroundColor: '#F2F1EE', overflowX: 'hidden' }}>
+    <div style={{ backgroundColor: 'var(--bg-app)', overflowX: 'hidden', minHeight: '100vh' }}>
       <AnimatePresence mode="wait" custom={directionRef.current}>
         <motion.main
           key={pathname}
@@ -70,6 +71,7 @@ function AppShellInner({ children }: { children: React.ReactNode }) {
         </motion.main>
       </AnimatePresence>
       <Sidebar todayCount={todayCount} backlogCount={backlogCount} plansCount={plansCount} />
+      <ThemeToggle />
       <DailyWipe today={today} />
     </div>
   );

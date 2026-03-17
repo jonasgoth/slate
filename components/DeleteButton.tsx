@@ -8,18 +8,16 @@ export function DeleteButton({ onClick }: DeleteButtonProps) {
   return (
     <button
       onClick={onClick}
-      className="flex items-center justify-center rounded-full transition-colors"
+      className="flex items-center justify-center rounded-full hover-delete transition-colors"
       style={{
         width: '22px',
         height: '22px',
-        color: '#B5B5B0',
+        color: 'var(--text-muted)',
         backgroundColor: 'transparent',
         transitionDuration: '0.15s',
         transitionTimingFunction: 'ease',
         cursor: 'pointer',
       }}
-      onMouseEnter={(e) => (e.currentTarget.style.backgroundColor = '#F7F5F5')}
-      onMouseLeave={(e) => (e.currentTarget.style.backgroundColor = 'transparent')}
     >
       <svg width="10" height="10" viewBox="0 0 10 10" fill="none">
         <path

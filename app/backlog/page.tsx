@@ -23,7 +23,7 @@ export default function BacklogPage() {
       <div style={{ marginBottom: '40px' }}>
         <h1
           style={{
-            color: 'var(--Text-Primary, rgba(0, 0, 0, 0.85))',
+            color: 'var(--text-primary)',
             fontFamily: 'system-ui, -apple-system, sans-serif',
             fontSize: '26px',
             fontStyle: 'normal',

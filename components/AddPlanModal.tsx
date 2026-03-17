@@ -39,15 +39,20 @@ export function AddPlanModal({ onClose, onAdd }: AddPlanModalProps) {
       }}
     >
       <div
-        className="bg-white w-full"
-        style={{ maxWidth: '380px', borderRadius: '16px', padding: '28px' }}
+        className="w-full"
+        style={{
+          maxWidth: '380px',
+          borderRadius: '16px',
+          padding: '28px',
+          background: 'var(--bg-card)',
+        }}
       >
         <h2
           style={{
             fontFamily: 'system-ui, -apple-system, sans-serif',
             fontSize: '18px',
             fontWeight: 400,
-            color: '#1A1A1A',
+            color: 'var(--text-primary)',
             marginBottom: '20px',
           }}
         >
@@ -64,11 +69,12 @@ export function AddPlanModal({ onClose, onAdd }: AddPlanModalProps) {
           placeholder="What's coming up?"
           className="w-full outline-none"
           style={{
-            border: '1px solid #E5E5E0',
+            border: '1px solid var(--border-input)',
             borderRadius: '8px',
             padding: '10px 12px',
             fontSize: '15px',
-            color: '#1A1A1A',
+            color: 'var(--text-primary)',
+            background: 'var(--bg-card)',
             marginBottom: '12px',
           }}
         />
@@ -82,11 +88,12 @@ export function AddPlanModal({ onClose, onAdd }: AddPlanModalProps) {
           }}
           className="w-full outline-none"
           style={{
-            border: '1px solid #E5E5E0',
+            border: '1px solid var(--border-input)',
             borderRadius: '8px',
             padding: '10px 12px',
             fontSize: '15px',
-            color: date ? '#1A1A1A' : '#B5B5B0',
+            color: date ? 'var(--text-primary)' : 'var(--text-muted)',
+            background: 'var(--bg-card)',
             marginBottom: '16px',
           }}
         />
@@ -99,8 +106,8 @@ export function AddPlanModal({ onClose, onAdd }: AddPlanModalProps) {
             borderRadius: '8px',
             fontSize: '14px',
             fontWeight: 500,
-            backgroundColor: '#1A1A1A',
-            color: '#FFFFFF',
+            backgroundColor: 'var(--text-primary)',
+            color: 'var(--bg-card)',
           }}
         >
           Add

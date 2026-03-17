@@ -41,10 +41,8 @@ export function InlineAddPlan({ onAdd, onCancel }: InlineAddPlanProps) {
   };
 
   const handleBlur = () => {
-    // Only cancel if both fields are empty (user clicked away without filling anything)
     if (!title.trim() && !date) {
       setTimeout(() => {
-        // Allow focus to shift to date input without cancelling
         const active = document.activeElement;
         if (!active || !active.closest('[data-inline-plan]')) {
           onCancel();
@@ -59,13 +57,12 @@ export function InlineAddPlan({ onAdd, onCancel }: InlineAddPlanProps) {
       className="flex items-center gap-3"
       style={{
         borderRadius: '8px',
-        border: '1px solid #E9E7E7',
-        background: '#FAFAF9',
-        boxShadow: '0 1px 4px 0 rgba(37, 9, 18, 0.05)',
+        border: '1px solid var(--border-card)',
+        background: 'var(--bg-inline-add)',
+        boxShadow: 'var(--shadow-card)',
         padding: '15px 18px',
       }}
     >
-      {/* Emoji placeholder */}
       <span style={{ fontSize: '16px', flexShrink: 0, opacity: 0.4 }}>😊</span>
 
       <input
@@ -78,7 +75,7 @@ export function InlineAddPlan({ onAdd, onCancel }: InlineAddPlanProps) {
         className="flex-1 outline-none bg-transparent"
         style={{
           fontSize: '15px',
-          color: '#1A1A1A',
+          color: 'var(--text-primary)',
           fontFamily: 'system-ui, -apple-system, sans-serif',
           fontWeight: 400,
           minWidth: 0,
@@ -97,7 +94,7 @@ export function InlineAddPlan({ onAdd, onCancel }: InlineAddPlanProps) {
         className="outline-none bg-transparent flex-shrink-0"
         style={{
           fontSize: '13px',
-          color: date ? '#B5B5B0' : '#D0CFCC',
+          color: date ? 'var(--text-muted)' : 'var(--border-input)',
           fontFamily: 'system-ui, -apple-system, sans-serif',
           fontWeight: 400,
           border: 'none',

@@ -8,7 +8,7 @@ function TodayIcon({ active }: { active: boolean }) {
   return (
     <svg
       width="20" height="20" viewBox="0 0 18 18" fill="none"
-      style={{ color: active ? '#1A1A1A' : '#B5B5B0', transition: 'color 80ms ease' }}
+      style={{ color: active ? 'var(--text-primary)' : 'var(--text-muted)', transition: 'color 80ms ease' }}
     >
       <circle cx="9" cy="9" r="7.5" stroke="currentColor" strokeWidth="1.5" />
       <path d="M6 9L8 11L12 7" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
@@ -20,7 +20,7 @@ function BacklogIcon({ active }: { active: boolean }) {
   return (
     <svg
       width="20" height="20" viewBox="0 0 18 18" fill="none"
-      style={{ color: active ? '#1A1A1A' : '#B5B5B0', transition: 'color 80ms ease' }}
+      style={{ color: active ? 'var(--text-primary)' : 'var(--text-muted)', transition: 'color 80ms ease' }}
     >
       <rect x="2.75" y="2.75" width="12.5" height="12.5" rx="2.5" stroke="currentColor" strokeWidth="1.5" />
       <line x1="5.5" y1="6.5" x2="12.5" y2="6.5" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" />
@@ -34,7 +34,7 @@ function PlansIcon({ active }: { active: boolean }) {
   return (
     <svg
       width="20" height="20" viewBox="0 0 18 18" fill="none"
-      style={{ color: active ? '#1A1A1A' : '#B5B5B0', transition: 'color 80ms ease' }}
+      style={{ color: active ? 'var(--text-primary)' : 'var(--text-muted)', transition: 'color 80ms ease' }}
     >
       <rect x="2.75" y="3.75" width="12.5" height="11.5" rx="2" stroke="currentColor" strokeWidth="1.5" />
       <line x1="6" y1="2" x2="6" y2="5.5" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" />
@@ -54,18 +54,9 @@ export function Sidebar({ todayCount: _todayCount, backlogCount: _backlogCount, 
   const pathname = usePathname();
 
   const navItems = [
-    {
-      href: '/today',
-      icon: (active: boolean) => <TodayIcon active={active} />,
-    },
-    {
-      href: '/backlog',
-      icon: (active: boolean) => <BacklogIcon active={active} />,
-    },
-    {
-      href: '/plans',
-      icon: (active: boolean) => <PlansIcon active={active} />,
-    },
+    { href: '/today', icon: (active: boolean) => <TodayIcon active={active} /> },
+    { href: '/backlog', icon: (active: boolean) => <BacklogIcon active={active} /> },
+    { href: '/plans', icon: (active: boolean) => <PlansIcon active={active} /> },
   ];
 
   return (
@@ -76,14 +67,13 @@ export function Sidebar({ todayCount: _todayCount, backlogCount: _backlogCount, 
         left: '50%',
         transform: 'translateX(-50%)',
         zIndex: 50,
-        backgroundColor: '#FFFFFF',
+        backgroundColor: 'var(--bg-nav)',
         borderRadius: '22px',
         padding: '8px 10px',
         display: 'flex',
         alignItems: 'center',
         gap: '4px',
-        boxShadow:
-          '0 0 0 1px rgba(0,0,0,0.04), 0 2px 4px rgba(0,0,0,0.04), 0 8px 16px rgba(0,0,0,0.08), 0 24px 48px rgba(0,0,0,0.10)',
+        boxShadow: 'var(--shadow-nav)',
       }}
     >
       {navItems.map((item) => {
@@ -92,6 +82,7 @@ export function Sidebar({ todayCount: _todayCount, backlogCount: _backlogCount, 
           <Link
             key={item.href}
             href={item.href}
+            className="hover-subtle"
             style={{
               position: 'relative',
               display: 'flex',
@@ -103,12 +94,6 @@ export function Sidebar({ todayCount: _todayCount, backlogCount: _backlogCount, 
               backgroundColor: 'transparent',
               textDecoration: 'none',
             }}
-            onMouseEnter={(e) => {
-              if (!active) e.currentTarget.style.backgroundColor = 'rgba(0,0,0,0.04)';
-            }}
-            onMouseLeave={(e) => {
-              e.currentTarget.style.backgroundColor = 'transparent';
-            }}
           >
             {active && (
               <motion.div
@@ -117,14 +102,9 @@ export function Sidebar({ todayCount: _todayCount, backlogCount: _backlogCount, 
                   position: 'absolute',
                   inset: 0,
                   borderRadius: '14px',
-                  backgroundColor: '#F0EFED',
+                  backgroundColor: 'var(--bg-nav-pill)',
                 }}
-                transition={{
-                  type: 'spring',
-                  stiffness: 500,
-                  damping: 35,
-                  mass: 0.8,
-                }}
+                transition={{ type: 'spring', stiffness: 500, damping: 35, mass: 0.8 }}
               />
             )}
             <span style={{ position: 'relative', zIndex: 1 }}>

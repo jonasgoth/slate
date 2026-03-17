@@ -82,9 +82,9 @@ export function PlanCard({ plan, onUpdate, onDelete, readonly = false, onEnter }
       className="flex items-center gap-3"
       style={{
         borderRadius: '8px',
-        border: '1px solid #E9E7E7',
-        background: '#FFF',
-        boxShadow: '0 1px 4px 0 rgba(37, 9, 18, 0.05)',
+        border: '1px solid var(--border-card)',
+        background: 'var(--bg-card)',
+        boxShadow: 'var(--shadow-card)',
         padding: '15px 18px',
       }}
       onMouseEnter={() => setHovered(true)}
@@ -112,7 +112,7 @@ export function PlanCard({ plan, onUpdate, onDelete, readonly = false, onEnter }
               data={data}
               onEmojiSelect={(e: { native: string }) => handleEmojiSelect(e.native)}
               autoFocus
-              theme="light"
+              theme="auto"
               previewPosition="none"
               skinTonePosition="none"
             />
@@ -152,7 +152,7 @@ export function PlanCard({ plan, onUpdate, onDelete, readonly = false, onEnter }
             className="outline-none bg-transparent flex-shrink-0"
             style={{
               fontSize: '13px',
-              color: '#B5B5B0',
+              color: 'var(--text-muted)',
               fontFamily: 'system-ui, -apple-system, sans-serif',
               fontWeight: 400,
               border: 'none',
@@ -172,7 +172,7 @@ export function PlanCard({ plan, onUpdate, onDelete, readonly = false, onEnter }
               style={{
                 fontSize: '13px',
                 fontWeight: 400,
-                color: hovered && !readonly ? '#8C8C87' : '#B5B5B0',
+                color: hovered && !readonly ? 'var(--text-dark-muted)' : 'var(--text-muted)',
                 whiteSpace: 'nowrap',
                 transition: 'color 0.15s ease',
               }}
@@ -186,8 +186,8 @@ export function PlanCard({ plan, onUpdate, onDelete, readonly = false, onEnter }
                   top: 'calc(100% + 8px)',
                   left: '50%',
                   transform: 'translateX(-50%)',
-                  backgroundColor: '#1A1A1A',
-                  color: '#FFFFFF',
+                  backgroundColor: 'var(--tooltip-bg)',
+                  color: 'var(--tooltip-text)',
                   fontSize: '12px',
                   fontWeight: 500,
                   borderRadius: '20px',
