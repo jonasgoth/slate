@@ -46,7 +46,7 @@ export default function PlansPage() {
         </h1>
       </div>
 
-      <AnimatePresence mode="wait">
+      <AnimatePresence mode="wait" initial={false}>
         <motion.div
           key={mode}
           variants={modeListVariants}

@@ -1,6 +1,7 @@
 'use client';
 
 import { useState, useRef, useEffect } from 'react';
+import { createPortal } from 'react-dom';
 import { differenceInCalendarDays, format, parseISO } from 'date-fns';
 import Picker from '@emoji-mart/react';
 import data from '@emoji-mart/data';
@@ -33,7 +34,9 @@ export function PlanCard({ plan, onUpdate, onDelete, readonly = false, onEnter }
   const [editingDate, setEditingDate] = useState(false);
   const [editing, setEditing] = useState(false);
   const [pickerOpen, setPickerOpen] = useState(false);
+  const [pickerPos, setPickerPos] = useState({ top: 0, left: 0 });
   const dateInputRef = useRef<HTMLInputElement>(null);
+  const emojiButtonRef = useRef<HTMLButtonElement>(null);
   const pickerRef = useRef<HTMLDivElement>(null);
 
   const emoji = plan.emoji
@@ -43,13 +46,27 @@ export function PlanCard({ plan, onUpdate, onDelete, readonly = false, onEnter }
   useEffect(() => {
     if (!pickerOpen) return;
     function handleClickOutside(e: MouseEvent) {
-      if (pickerRef.current && !pickerRef.current.contains(e.target as Node)) {
+      if (
+        pickerRef.current && !pickerRef.current.contains(e.target as Node) &&
+        emojiButtonRef.current && !emojiButtonRef.current.contains(e.target as Node)
+      ) {
         setPickerOpen(false);
       }
     }
     document.addEventListener('mousedown', handleClickOutside);
     return () => document.removeEventListener('mousedown', handleClickOutside);
   }, [pickerOpen]);
+
+  const handleEmojiButtonClick = () => {
+    if (readonly) return;
+    if (!pickerOpen) {
+      const rect = emojiButtonRef.current?.getBoundingClientRect();
+      if (rect) {
+        setPickerPos({ top: rect.bottom + 8, left: rect.left });
+      }
+    }
+    setPickerOpen((o) => !o);
+  };
 
   const handleEmojiSelect = (newEmoji: string) => {
     onUpdate(plan.id, { emoji: newEmoji });
@@ -91,9 +108,10 @@ export function PlanCard({ plan, onUpdate, onDelete, readonly = false, onEnter }
       onMouseLeave={() => setHovered(false)}
     >
       {/* Emoji button + picker */}
-      <div ref={pickerRef} className="relative flex-shrink-0">
+      <div className="flex-shrink-0">
         <button
-          onClick={() => { if (!readonly) setPickerOpen((o) => !o); }}
+          ref={emojiButtonRef}
+          onClick={handleEmojiButtonClick}
           style={{
             fontSize: '16px',
             background: 'none',
@@ -106,8 +124,11 @@ export function PlanCard({ plan, onUpdate, onDelete, readonly = false, onEnter }
         >
           {emoji}
         </button>
-        {pickerOpen && (
-          <div style={{ position: 'absolute', top: 'calc(100% + 8px)', left: 0, zIndex: 50 }}>
+        {pickerOpen && typeof window !== 'undefined' && createPortal(
+          <div
+            ref={pickerRef}
+            style={{ position: 'fixed', top: pickerPos.top, left: pickerPos.left, zIndex: 9999 }}
+          >
             <Picker
               data={data}
               onEmojiSelect={(e: { native: string }) => handleEmojiSelect(e.native)}
@@ -116,7 +137,8 @@ export function PlanCard({ plan, onUpdate, onDelete, readonly = false, onEnter }
               previewPosition="none"
               skinTonePosition="none"
             />
-          </div>
+          </div>,
+          document.body
         )}
       </div>
 
@@ -172,7 +194,7 @@ export function PlanCard({ plan, onUpdate, onDelete, readonly = false, onEnter }
               style={{
                 fontSize: '13px',
                 fontWeight: 400,
-                color: hovered && !readonly ? 'var(--text-dark-muted)' : 'var(--text-muted)',
+                color: hovered && !readonly ? 'var(--text-btn-hover)' : 'var(--text-muted)',
                 whiteSpace: 'nowrap',
                 transition: 'color 0.15s ease',
               }}

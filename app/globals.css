@@ -14,6 +14,7 @@
   --bg-nav: #FFFFFF;
   --bg-nav-pill: #F0EFED;
   --text-primary: #1A1A1A;
+  --icon-active: #3b3731;
   --text-muted: #B5B5B0;
   --text-submuted: #9F989B;
   --text-dark-muted: #8C8C87;
@@ -21,6 +22,7 @@
   --border-input: #E5E5E0;
   --bg-hover-subtle: rgba(0, 0, 0, 0.04);
   --bg-delete-hover: #F7F5F5;
+  --text-btn-hover: #6a6861;
   --bg-edit-active: rgba(0, 0, 0, 0.04);
   --tooltip-bg: #1A1A1A;
   --tooltip-text: #FFFFFF;
@@ -40,6 +42,7 @@
   --bg-nav: #252320;
   --bg-nav-pill: #302E2B;
   --text-primary: #E8E6E2;
+  --icon-active: #E8E6E2;
   --text-muted: #6A6A65;
   --text-submuted: #6B6764;
   --text-dark-muted: #5C5C57;
@@ -47,6 +50,7 @@
   --border-input: #2E2D2A;
   --bg-hover-subtle: rgba(255, 255, 255, 0.06);
   --bg-delete-hover: #252320;
+  --text-btn-hover: #9E9A95;
   --bg-edit-active: rgba(255, 255, 255, 0.08);
   --tooltip-bg: #E8E6E2;
   --tooltip-text: #1A1A1A;
@@ -69,6 +73,14 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+}
+
+/* Button press feedback */
+button {
+  transition: transform 0.15s cubic-bezier(.4,0,.2,1);
+}
+button:active {
+  transform: scale(0.97);
 }
 
 /* Hover utility classes used by interactive elements */

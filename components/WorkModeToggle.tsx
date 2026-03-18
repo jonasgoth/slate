@@ -1,76 +1,60 @@
 'use client';
 
-import { motion, AnimatePresence } from 'framer-motion';
 import { useMode } from '@/lib/ModeContext';
 
-const TRACK_W = 30;
-const TRACK_H = 17;
-const THUMB = 13;
-const PAD = 2;
-const TRAVEL = TRACK_W - THUMB - PAD * 2;
+function BriefcaseIcon() {
+  return (
+    <svg width="15" height="15" viewBox="0 0 16 16" fill="none">
+      <rect x="1.5" y="5.5" width="13" height="9" rx="1.5" stroke="currentColor" strokeWidth="1.5" />
+      <path d="M5.5 5.5V4a2 2 0 0 1 2-2h1a2 2 0 0 1 2 2v1.5" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" />
+      <line x1="1.5" y1="10" x2="14.5" y2="10" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" />
+    </svg>
+  );
+}
 
-const COLOR_PERSONAL = '#22c55e';
-const COLOR_WORK = '#FF4652';
+function HomeIcon() {
+  return (
+    <svg width="15" height="15" viewBox="0 0 16 16" fill="none">
+      <path d="M1.5 7L8 1.5 14.5 7" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+      <path d="M3 6v7.5a.5.5 0 0 0 .5.5h3.25V10.5a1.25 1.25 0 1 1 2.5 0V14H12.5a.5.5 0 0 0 .5-.5V6" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+    </svg>
+  );
+}
 
 export function WorkModeToggle() {
   const { isWorkMode, toggleMode } = useMode();
 
   return (
-    <div style={{ display: 'inline-flex', alignItems: 'center', gap: '7px' }}>
-    <motion.button
+    <button
       onClick={toggleMode}
-      role="switch"
-      aria-checked={isWorkMode}
-      aria-label={isWorkMode ? 'Switch to personal mode' : 'Switch to work mode'}
-      animate={{ backgroundColor: isWorkMode ? COLOR_WORK : COLOR_PERSONAL }}
-      transition={{ duration: 0.25, ease: 'easeInOut' }}
+      title={isWorkMode ? 'Switch to personal mode' : 'Switch to work mode'}
       style={{
-        position: 'relative',
-        display: 'inline-flex',
+        position: 'fixed',
+        top: '20px',
+        right: '60px',
+        zIndex: 50,
+        display: 'flex',
         alignItems: 'center',
-        width: `${TRACK_W}px`,
-        height: `${TRACK_H}px`,
-        borderRadius: `${TRACK_H}px`,
-        padding: `${PAD}px`,
-        cursor: 'pointer',
-        flexShrink: 0,
-        outline: 'none',
+        justifyContent: 'center',
+        width: '32px',
+        height: '32px',
+        borderRadius: '8px',
         border: 'none',
-        WebkitTapHighlightColor: 'transparent',
+        backgroundColor: isWorkMode ? 'var(--bg-hover-subtle)' : 'transparent',
+        color: 'var(--text-muted)',
+        cursor: 'pointer',
+        transition: 'background-color 0.15s ease, color 0.15s ease',
+      }}
+      onMouseEnter={(e) => {
+        e.currentTarget.style.backgroundColor = 'var(--bg-hover-subtle)';
+        e.currentTarget.style.color = 'var(--icon-active)';
+      }}
+      onMouseLeave={(e) => {
+        e.currentTarget.style.backgroundColor = isWorkMode ? 'var(--bg-hover-subtle)' : 'transparent';
+        e.currentTarget.style.color = 'var(--text-muted)';
       }}
     >
-      <motion.span
-        animate={{ x: isWorkMode ? TRAVEL : 0 }}
-        transition={{ type: 'spring', stiffness: 500, damping: 38, mass: 0.8 }}
-        style={{
-          display: 'block',
-          width: `${THUMB}px`,
-          height: `${THUMB}px`,
-          borderRadius: '50%',
-          background: '#fff',
-          boxShadow: '0 1px 4px rgba(0,0,0,0.22)',
-          flexShrink: 0,
-        }}
-      />
-    </motion.button>
-    <AnimatePresence>
-      {isWorkMode && (
-        <motion.span
-          initial={{ opacity: 0, x: -4 }}
-          animate={{ opacity: 1, x: 0 }}
-          exit={{ opacity: 0, x: -4 }}
-          transition={{ duration: 0.2 }}
-          style={{
-            fontSize: '11px',
-            color: 'var(--text-muted)',
-            letterSpacing: '0.01em',
-            userSelect: 'none',
-          }}
-        >
-          work mode
-        </motion.span>
-      )}
-    </AnimatePresence>
-    </div>
+      {isWorkMode ? <BriefcaseIcon /> : <HomeIcon />}
+    </button>
   );
 }

@@ -36,7 +36,7 @@ async function isValidToken(token: string): Promise<boolean> {
   }
 }
 
-export async function middleware(request: NextRequest) {
+export async function proxy(request: NextRequest) {
   const token = request.cookies.get('session-token')?.value;
 
   if (!token || !(await isValidToken(token))) {

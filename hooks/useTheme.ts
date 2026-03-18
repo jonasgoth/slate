@@ -12,11 +12,19 @@ function getStoredTheme(): Theme {
   return 'light';
 }
 
+const THEME_EVENT = 'app:themechange';
+
 export function useTheme() {
   const [theme, setThemeState] = useState<Theme>('light');
 
   useEffect(() => {
     setThemeState(getStoredTheme());
+
+    const handler = (e: Event) => {
+      setThemeState((e as CustomEvent<Theme>).detail);
+    };
+    window.addEventListener(THEME_EVENT, handler);
+    return () => window.removeEventListener(THEME_EVENT, handler);
   }, []);
 
   const toggle = () => {
@@ -24,6 +32,7 @@ export function useTheme() {
     setThemeState(next);
     document.documentElement.setAttribute('data-theme', next);
     localStorage.setItem('theme', next);
+    window.dispatchEvent(new CustomEvent<Theme>(THEME_EVENT, { detail: next }));
   };
 
   return { theme, toggle };

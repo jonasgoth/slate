@@ -13,15 +13,16 @@ export function AddButton({ onClick, label = '+ Add', icon, active }: AddButtonP
   return (
     <button
       onClick={onClick}
-      className="text-sm hover-subtle transition-colors"
+      className="text-sm hover-subtle"
+      onMouseEnter={(e) => { e.currentTarget.style.color = 'var(--text-btn-hover)'; }}
+      onMouseLeave={(e) => { e.currentTarget.style.color = active ? 'var(--text-dark-muted)' : 'var(--text-muted)'; }}
       style={{
         color: active ? 'var(--text-dark-muted)' : 'var(--text-muted)',
         fontWeight: 500,
         padding: '6px 10px',
         borderRadius: '8px',
         backgroundColor: 'transparent',
-        transitionDuration: '0.15s',
-        transitionTimingFunction: 'ease',
+        transition: 'color 0.15s ease',
         cursor: 'pointer',
         display: 'flex',
         alignItems: 'center',

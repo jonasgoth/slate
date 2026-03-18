@@ -58,7 +58,7 @@ export function ThemeToggle() {
       }}
       onMouseEnter={(e) => {
         e.currentTarget.style.backgroundColor = 'var(--bg-hover-subtle)';
-        e.currentTarget.style.color = 'var(--text-primary)';
+        e.currentTarget.style.color = 'var(--icon-active)';
       }}
       onMouseLeave={(e) => {
         e.currentTarget.style.backgroundColor = 'transparent';

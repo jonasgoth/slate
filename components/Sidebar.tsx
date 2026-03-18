@@ -2,13 +2,11 @@
 
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
-import { motion } from 'framer-motion';
-
 function TodayIcon({ active }: { active: boolean }) {
   return (
     <svg
       width="20" height="20" viewBox="0 0 18 18" fill="none"
-      style={{ color: active ? 'var(--text-primary)' : 'var(--text-muted)', transition: 'color 80ms ease' }}
+      style={{ color: active ? 'var(--icon-active)' : 'var(--text-muted)', transition: 'color 80ms ease' }}
     >
       <circle cx="9" cy="9" r="7.5" stroke="currentColor" strokeWidth="1.5" />
       <path d="M6 9L8 11L12 7" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
@@ -20,7 +18,7 @@ function BacklogIcon({ active }: { active: boolean }) {
   return (
     <svg
       width="20" height="20" viewBox="0 0 18 18" fill="none"
-      style={{ color: active ? 'var(--text-primary)' : 'var(--text-muted)', transition: 'color 80ms ease' }}
+      style={{ color: active ? 'var(--icon-active)' : 'var(--text-muted)', transition: 'color 80ms ease' }}
     >
       <rect x="2.75" y="2.75" width="12.5" height="12.5" rx="2.5" stroke="currentColor" strokeWidth="1.5" />
       <line x1="5.5" y1="6.5" x2="12.5" y2="6.5" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" />
@@ -34,7 +32,7 @@ function PlansIcon({ active }: { active: boolean }) {
   return (
     <svg
       width="20" height="20" viewBox="0 0 18 18" fill="none"
-      style={{ color: active ? 'var(--text-primary)' : 'var(--text-muted)', transition: 'color 80ms ease' }}
+      style={{ color: active ? 'var(--icon-active)' : 'var(--text-muted)', transition: 'color 80ms ease' }}
     >
       <rect x="2.75" y="3.75" width="12.5" height="11.5" rx="2" stroke="currentColor" strokeWidth="1.5" />
       <line x1="6" y1="2" x2="6" y2="5.5" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" />
@@ -68,7 +66,7 @@ export function Sidebar({ todayCount: _todayCount, backlogCount: _backlogCount, 
         transform: 'translateX(-50%)',
         zIndex: 50,
         backgroundColor: 'var(--bg-nav)',
-        borderRadius: '22px',
+        borderRadius: '16px',
         padding: '8px 10px',
         display: 'flex',
         alignItems: 'center',
@@ -90,23 +88,21 @@ export function Sidebar({ todayCount: _todayCount, backlogCount: _backlogCount, 
               justifyContent: 'center',
               width: '48px',
               height: '48px',
-              borderRadius: '14px',
+              borderRadius: '12px',
               backgroundColor: 'transparent',
               textDecoration: 'none',
             }}
           >
-            {active && (
-              <motion.div
-                layoutId="nav-pill"
-                style={{
-                  position: 'absolute',
-                  inset: 0,
-                  borderRadius: '14px',
-                  backgroundColor: 'var(--bg-nav-pill)',
-                }}
-                transition={{ type: 'spring', stiffness: 500, damping: 35, mass: 0.8 }}
-              />
-            )}
+            <span
+              style={{
+                position: 'absolute',
+                inset: 0,
+                borderRadius: '12px',
+                backgroundColor: 'var(--bg-nav-pill)',
+                opacity: active ? 1 : 0,
+                transition: 'opacity 150ms ease',
+              }}
+            />
             <span style={{ position: 'relative', zIndex: 1 }}>
               {item.icon(active)}
             </span>

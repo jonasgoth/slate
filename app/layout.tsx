@@ -5,6 +5,9 @@ import { AppShell } from '@/components/AppShell';
 export const metadata: Metadata = {
   title: 'Doto',
   description: 'Personal productivity — daily focus, backlog, and plans.',
+  icons: {
+    icon: '/icon.svg',
+  },
 };
 
 // Inline script runs before React hydrates to avoid a flash of wrong theme.

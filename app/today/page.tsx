@@ -16,7 +16,6 @@ import { SectionLabel } from '@/components/SectionLabel';
 import { AddButton } from '@/components/AddButton';
 import { InlineAddTask } from '@/components/InlineAddTask';
 import { SortableList } from '@/components/SortableList';
-import { WorkModeToggle } from '@/components/WorkModeToggle';
 import type { Todo } from '@/types';
 
 const collapseVariants = {
@@ -82,9 +81,6 @@ export default function TodayPage() {
         >
           {dayName}
         </h1>
-        <div style={{ display: 'flex', alignItems: 'center', gap: '10px', marginTop: '6px' }}>
-          <WorkModeToggle />
-        </div>
       </div>
 
       {/* Focus section */}
@@ -102,7 +98,7 @@ export default function TodayPage() {
           initial={false}
           style={{ overflow: 'hidden' }}
         >
-          <AnimatePresence mode="wait">
+          <AnimatePresence mode="wait" initial={false}>
             <motion.div
               key={mode}
               variants={modeListVariants}
@@ -141,9 +137,6 @@ export default function TodayPage() {
 
               {/* Action buttons row */}
               <div style={{ display: 'flex', justifyContent: 'flex-end', alignItems: 'center', gap: '4px', marginTop: '8px' }}>
-                {!addingTask && (
-                  <AddButton onClick={() => setAddingTask(true)} />
-                )}
                 <AddButton
                   onClick={() => {
                     setBrainDumpOpen((v) => !v);
@@ -151,13 +144,10 @@ export default function TodayPage() {
                   }}
                   label="Dump"
                   active={brainDumpOpen}
-                  icon={
-                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
-                      <path d="M8 19c-2-.5-3.5-2-4-3.5C3.5 14 3 12 3 10c0-3 1.5-5 3.5-6C7.5 3 9.5 2.5 11.5 3c2-.5 4.5.5 6 2.5 1.5 2 2 4.5 1.5 6.5-.5 1.5-1.5 2.5-2.5 3 .5 1 .5 2 0 3-.5 1-1.5 1.5-2.5 2-1.5 0-2.5-.5-3.5-1.5C9.5 19.5 8.5 19.5 8 19Z"/>
-                      <path d="M9.5 8.5c-.5 2 0 4 1.5 5.5"/>
-                    </svg>
-                  }
                 />
+                {!addingTask && (
+                  <AddButton onClick={() => setAddingTask(true)} />
+                )}
               </div>
             </motion.div>
           </AnimatePresence>
@@ -179,7 +169,7 @@ export default function TodayPage() {
           initial={false}
           style={{ overflow: 'hidden' }}
         >
-          <AnimatePresence mode="wait">
+          <AnimatePresence mode="wait" initial={false}>
             <motion.div
               key={mode}
               variants={modeListVariants}
@@ -245,7 +235,7 @@ export default function TodayPage() {
           initial={false}
           style={{ overflow: 'hidden' }}
         >
-          <AnimatePresence mode="wait">
+          <AnimatePresence mode="wait" initial={false}>
             <motion.div
               key={mode}
               variants={modeListVariants}

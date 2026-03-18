@@ -62,7 +62,9 @@ export function TaskCard({
         {showMoveToToday && (
           <button
             onClick={() => onMoveToToday?.(id)}
-            className="hover-subtle text-xs transition-colors"
+            className="hover-subtle"
+            onMouseEnter={(e) => { e.currentTarget.style.color = 'var(--text-btn-hover)'; }}
+            onMouseLeave={(e) => { e.currentTarget.style.color = 'var(--text-muted)'; }}
             style={{
               color: 'var(--text-muted)',
               fontSize: '13px',
@@ -70,7 +72,7 @@ export function TaskCard({
               padding: '3px 8px',
               borderRadius: '6px',
               backgroundColor: 'transparent',
-              transitionDuration: '0.15s',
+              transition: 'color 0.15s ease',
               visibility: showMoveBtn ? 'visible' : 'hidden',
               cursor: 'pointer',
             }}
@@ -81,7 +83,9 @@ export function TaskCard({
         {showMoveToBacklog && (
           <button
             onClick={() => onMoveToBacklog?.(id)}
-            className="hover-subtle text-xs transition-colors"
+            className="hover-subtle"
+            onMouseEnter={(e) => { e.currentTarget.style.color = 'var(--text-btn-hover)'; }}
+            onMouseLeave={(e) => { e.currentTarget.style.color = 'var(--text-muted)'; }}
             style={{
               color: 'var(--text-muted)',
               fontSize: '13px',
@@ -89,7 +93,7 @@ export function TaskCard({
               padding: '3px 8px',
               borderRadius: '6px',
               backgroundColor: 'transparent',
-              transitionDuration: '0.15s',
+              transition: 'color 0.15s ease',
               visibility: showMoveBacklogBtn ? 'visible' : 'hidden',
               cursor: 'pointer',
             }}

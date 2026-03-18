@@ -41,7 +41,7 @@ export function SectionLabel({ children, collapsible, isOpen, onToggle }: Sectio
         padding: 0,
         cursor: 'pointer',
         marginBottom: '12px',
-        color: hovered ? 'var(--text-dark-muted)' : 'var(--text-muted)',
+        color: hovered ? 'var(--text-btn-hover)' : 'var(--text-muted)',
         transition: 'color 0.15s ease',
       }}
     >
